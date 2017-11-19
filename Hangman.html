@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HangMan</title>
+
+<!-- BootStrap Link-->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Spectral+SC" rel="stylesheet">
+
+<!-- Jquery Link -->
+<!-- <script src="https://code.jquery.com/jquery.js"></script>
+ -->
+
+
+<!-- CSS -->
+<style type="text/css">
+	
+
+	body{ 
+		
+		background-image: url(./stranger.jpg);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100%;	
+	}
+
+
+	#container{
+			width: 30%;
+			border-radius: 20px;
+			padding: 10px;
+			background-image: url(./demogorgon.jpg);
+			opacity: 0.7;
+			margin: 20% auto;
+			text-align: center;
+	}
+
+	h1{
+		color: #dddddd;
+	}
+
+	
+	.strange{
+
+		font-family: 'Spectral SC', serif;
+		color: azure;
+		font-size: 70px;
+	}
+
+	.Words{
+		
+		margin-left: : 60px;
+		font-family: 'Spectral SC', serif;
+		color: red;
+		font-size: 70px;
+		
+
+	
+	}
+	
+	.dash{
+		color: red
+	}
+
+color: azure;
+font-size: 70px;
+
+</style>
+</head>
+<body>
+
+<audio autoplay loop>
+  <source src="stranger_things.mp3" type="audio/mpeg" loop="loop">
+</audio>
+
+
+<!-- JUMBOTRON HEADER -->
+<div class="col-md-12">
+	<div class="row">	
+		<h2 class="strange">Stranger</h2>
+		<h2 class="Words">Words</h2>
+	</div>
+</div>
+
+<div id="container">
+	<h1><span style="color: red;">G</span>uess a Lette<span style="color: red;">R</h1>
+
+	
+	<input id = "letter" type="text">
+	
+	<input type="button" value="letter" onkeyup=""/>
+	
+	<p id="answer"></p>
+	
+	<p id="counter"></p>
+
+	<p id="wrong"></p>
+
+	<p id= "stat"></p>
+
+</div>
+
+
+<!-- 
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Play!</a>
+  </p> -->
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+document.onkeyup = function(event){
+	
+	userKey = event.userKey;
+	console.log(userKey);
+}
+
+
+//Array that with words that will be chosesn at random.
+	var randomWordArr = ["eleven" ,"mike", "dustin","lucas", "demogorgon","will"];
+
+
+	var randomWord = randomWordArr [Math.floor(Math.random()*randomWordArr.length) ];
+//Setting Global variables	
+	var s;
+	var count = 0;
+	var wrongCount = 0;
+
+
+
+//Empty Array to push answers into.
+	var answerArray = [];
+
+
+
+//	function startUp() 
+
+//	{
+
+
+		for (var i = 0; i < randomWord.length; i++) {
+		answerArray[i] = "_";
+
+		}
+
+//put them in a string 
+		
+		s = answerArray.join(" ".attr());
+		document.getElementById("answer").innerHTML = s; 
+
+
+//	}
+
+
+
+
+	function Letter()
+	{
+
+
+		var letter = document.getElementById("letter").value;
+//make sure we have a guess(more checks can be made here, only letters etc.)
+		if(letter.length > 0)
+
+		{
+			for (var i = 0; i < randomWord.length; i++){
+//now, if the randomword contains a letter that the user typed in
+				if (randomWord[i] === letter) {
+			
+//assign it to a letter
+					answerArray[i] = letter;
+				}				
+				
+			}
+// here is how many times it takes to guess
+			
+				count++;
+				document.getElementById("counter").innerHTML = "No of tries: " + count;
+
+				document.getElementById("answer").innerHTML = answerArray.join(" ");
+
+		}
+
+		if(letter.length > 0)
+
+		{
+			for (var i = 0; i < randomWord.length; i++){
+//now, if the randomword contains a letter that the user typed in
+			
+//assign it to a letter
+				
+				
+			}
+
+
+
+// here is how many times it takes to guess
+			
+				count + 1;
+				document.getElementById("counter").innerHTML = "No of tries: " + count;
+				document.getElementById("answer").innerHTML = answerArray.join(" ");
+
+		}
+
+
+
+		if (count > 10) {
+	
+				alert("Game Over!");
+	//		document.getElementById("stat").innerHTML = "Come on - you should have guessed it by now";
+		}
+
+
+	}
+
+	//make an array containing words that will be chosen at random. 
+	// Have user choose letters that will be pushed into another array. 
+	// Music that play while user is guessing their word. 
+	//counter for guesses that are wrong. 
+	// Music that plays when user makes wrong guess. 
+	// Place holder for the letters. 
+	// A game over and you win alert. 
+
+</script>
+
+
+</body>
+</html>
